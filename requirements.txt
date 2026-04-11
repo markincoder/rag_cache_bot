@@ -1,14 +1,13 @@
-# Основные зависимости для RAG-ассистента
+# Core dependencies for the RAG assistant
 
-# OpenAI API клиент для работы с LLM и эмбеддингами
+# OpenAI API client for LLM and embeddings
 openai>=1.12.0
 
-# ChromaDB для локального векторного хранилища
+# ChromaDB for local vector store
 chromadb>=0.4.22
 
-# Загрузка переменных окружения из .env файла
+# Load environment variables from .env
 python-dotenv>=1.0.0
 
-# Telegram Bot API для работы с Telegram ботом
+# Telegram Bot API
 python-telegram-bot>=20.0
-

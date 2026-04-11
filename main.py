@@ -47,9 +47,10 @@ def initialize_system():
     
     # 2. Инициализируем векторное хранилище ChromaDB
     print("\n[2/4] Инициализация векторного хранилища...")
+    chroma_dir = os.getenv("CHROMA_PERSIST_DIR", "./chroma_db")
     embedding_store = EmbeddingStore(
         collection_name="rag_documents",
-        persist_directory="./chroma_db",
+        persist_directory=chroma_dir,
         embedding_model="text-embedding-3-small",  # Модель OpenAI для эмбеддингов
         api_key=api_key
     )
@@ -298,9 +299,11 @@ def main():
         if telegram_token:
             print("3. Telegram бот - запуск бота для Telegram")
         print()
-        
-        mode = input("Выберите режим (1, 2" + (", 3" if telegram_token else "") + ", по умолчанию 1): ").strip()
-        
+
+        mode = '3'
+        if not telegram_token:
+            mode = input("Выберите режим (1, 2" + (", 3" if telegram_token else "") + ", по умолчанию 1): ").strip()
+
         if mode == '2':
             demo_mode(rag_assistant, cache, logger)
             

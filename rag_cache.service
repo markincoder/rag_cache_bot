@@ -1,0 +1,22 @@
+[Unit]
+Description=Personal Assistant Bot
+After=network.target
+
+[Service]
+# Пользователь, под которым будет запуск
+User=sergeymarkin
+Group=sergeymarkin
+# Папка с проектом
+WorkingDirectory=/home/sergeymarkin/projects/5-7_RAG_cache_log
+# Python из venv и скрипт бота
+ExecStart=python main.py
+# Перезапуск при падении
+Restart=always
+# Логи
+StandardOutput=journal
+StandardError=journal
+# Среда (опционально, если нужны переменные окружения)
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target

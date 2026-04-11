@@ -37,6 +37,13 @@ class EmbeddingStore:
             embedding_model: Название модели OpenAI для эмбеддингов
             api_key: API ключ OpenAI (если None, берется из переменной окружения)
         """
+        # Абсолютный путь + создание каталога (SQLite/Chroma требуют права на запись в каталог)
+        p = Path(persist_directory).expanduser()
+        if not p.is_absolute():
+            p = Path.cwd() / p
+        p = p.resolve()
+        p.mkdir(parents=True, exist_ok=True)
+        persist_directory = str(p)
         print(f"Инициализация ChromaDB в директории: {persist_directory}")
         
         # Создаем клиент ChromaDB с персистентным хранилищем
