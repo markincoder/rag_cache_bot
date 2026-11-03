@@ -67,8 +67,8 @@ def initialize_system():
     print("\n[3/4] Инициализация RAG-ассистента...")
     rag_assistant = RAGAssistant(
         embedding_store=embedding_store,
-        model="gpt-3.5-turbo",
-        temperature=0.7
+        model=os.getenv("MODEL_NAME", "gpt-4o-mini"),
+        temperature=float(os.getenv("TEMPERATURE", "0.7"))
     )
     
     # 4. Инициализируем логгер базы данных
